@@ -22,7 +22,6 @@ class LocationProviderIdBehavior extends AttributeBehavior
     public function onBeforeValidate(): void
     {
         if ($this->owner->isAttributeChanged('provider_id')) {
-
             if ($this->owner->provider_id) {
                 $place = Yii::$container->get(PlaceDetails::class, [], [
                     'placeId' => $this->owner->provider_id,

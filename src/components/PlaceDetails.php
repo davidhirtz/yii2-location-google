@@ -40,7 +40,7 @@ class PlaceDetails extends BaseObject
 
     public function getAttributes(): array
     {
-        $attributes= [];
+        $attributes = [];
 
         if (in_array('id', $this->fields)) {
             $attributes['provider_id'] = $this->data['id'] ?? null;

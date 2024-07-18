@@ -2,8 +2,8 @@
 
 namespace davidhirtz\yii2\location\google;
 
-use davidhirtz\yii2\location\google\components\Autocomplete;
 use davidhirtz\yii2\location\google\behaviors\LocationProviderIdBehavior;
+use davidhirtz\yii2\location\google\components\Autocomplete;
 use davidhirtz\yii2\location\models\Location;
 use davidhirtz\yii2\location\modules\admin\widgets\forms\AutocompleteInputWidget;
 use davidhirtz\yii2\skeleton\web\Application;

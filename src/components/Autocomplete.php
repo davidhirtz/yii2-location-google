@@ -4,7 +4,6 @@ namespace davidhirtz\yii2\location\google\components;
 
 use davidhirtz\yii2\location\modules\admin\interfaces\AutocompleteInterface;
 use GuzzleHttp\RequestOptions;
-use Yii;
 use yii\base\BaseObject;
 
 class Autocomplete extends BaseObject implements AutocompleteInterface
