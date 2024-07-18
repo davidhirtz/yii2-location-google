@@ -1,0 +1,6 @@
+actor: FunctionalTester
+modules:
+  enabled:
+    - Asserts
+    - Filesystem
+    - davidhirtz\yii2\skeleton\codeception\Yii2

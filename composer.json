@@ -1,0 +1,66 @@
+{
+  "name": "davidhirtz/yii2-location-google",
+  "description": "Google Maps location provider for location models for admin panel based on Yii 2.0 framework",
+  "license": "proprietary",
+  "type": "yii2-extension",
+  "homepage": "https://www.github.com/davidhirtz/yii2-location-google",
+  "authors": [
+    {
+      "name": "David Hirtz",
+      "homepage": "https://www.davidhirtz.com/"
+    }
+  ],
+  "require": {
+    "davidhirtz/yii2-location": "^1.0",
+    "ramsey/uuid": "^4.7"
+  },
+  "require-dev": {
+    "codeception/codeception": "^5.0",
+    "codeception/module-asserts": "*",
+    "codeception/module-filesystem": "^3.0",
+    "codeception/module-phpbrowser": "*",
+    "codeception/module-yii2": "*",
+    "codeception/specify": "^2.0",
+    "codeception/verify": "^3.0",
+    "phpro/grumphp-shim": "^2.4",
+    "phpunit/phpunit": "^9",
+    "rector/rector": "^1.0",
+    "symplify/easy-coding-standard": "^12.0",
+    "yiisoft/yii2-debug": "^2.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "davidhirtz\\yii2\\location\\google\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "davidhirtz\\yii2\\location\\google\\tests\\": "tests"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "8.1"
+    },
+    "allow-plugins": {
+      "phpro/grumphp-shim": true,
+      "yiisoft/yii2-composer": true
+    }
+  },
+  "extra": {
+    "bootstrap": "davidhirtz\\yii2\\location\\google\\Bootstrap"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "scripts": {
+    "check-cs": "ecs check --ansi",
+    "fix-cs": "ecs check --ansi --fix",
+    "phpstan": "phpstan --memory-limit=1G",
+    "rector": "rector",
+    "test": "codecept run"
+  }
+}
