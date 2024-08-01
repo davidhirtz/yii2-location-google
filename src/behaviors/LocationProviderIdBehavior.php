@@ -23,6 +23,20 @@ class LocationProviderIdBehavior extends AttributeBehavior
     {
         if ($this->owner->isAttributeChanged('provider_id')) {
             if ($this->owner->provider_id) {
+                $exists = Location::find()
+                    ->andWhere(['provider_id' => $this->owner->provider_id])
+                    ->andFilterWhere(['<>', 'id', $this->owner->id])
+                    ->exists();
+
+                if($exists) {
+                    $this->owner->addError('provider_id', Yii::t('yii', '{attribute} "{value}" has already been taken.', [
+                        'attribute' => $this->owner->getAttributeLabel('provider_id'),
+                        'value' => $this->owner->provider_id,
+                    ]));
+
+                    return;
+                }
+
                 $place = Yii::$container->get(PlaceDetails::class, [], [
                     'placeId' => $this->owner->provider_id,
                 ]);
