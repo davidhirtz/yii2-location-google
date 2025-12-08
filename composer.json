@@ -31,12 +31,12 @@
   },
   "autoload": {
     "psr-4": {
-      "davidhirtz\\yii2\\location\\google\\": "src"
+      "Hirtz\\Location\\google\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "davidhirtz\\yii2\\location\\google\\tests\\": "tests"
+      "Hirtz\\Location\\google\\tests\\": "tests"
     }
   },
   "config": {
@@ -49,7 +49,7 @@
     }
   },
   "extra": {
-    "bootstrap": "davidhirtz\\yii2\\location\\google\\Bootstrap"
+    "bootstrap": "Hirtz\\Location\\google\\Bootstrap"
   },
   "repositories": [
     {

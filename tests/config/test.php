@@ -1,6 +1,6 @@
 <?php
 
-use davidhirtz\yii2\location\Bootstrap;
+use Hirtz\Location\Bootstrap;
 
 if (is_file(__DIR__ . '/db.php')) {
     require(__DIR__ . '/db.php');

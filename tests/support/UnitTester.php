@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace davidhirtz\yii2\location\tests\support;
+namespace Hirtz\Location\tests\support;
 
 use Codeception\Actor;
 

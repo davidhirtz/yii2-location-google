@@ -1,8 +1,8 @@
 <?php
 
-namespace davidhirtz\yii2\location\google\components;
+namespace Hirtz\Location\google\components;
 
-use davidhirtz\yii2\location\modules\admin\interfaces\AutocompleteInterface;
+use Hirtz\Location\modules\admin\interfaces\AutocompleteInterface;
 use GuzzleHttp\RequestOptions;
 use yii\base\BaseObject;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace davidhirtz\yii2\location\google\behaviors;
+namespace Hirtz\Location\google\behaviors;
 
-use davidhirtz\yii2\location\google\components\PlaceDetails;
-use davidhirtz\yii2\location\models\Location;
+use Hirtz\Location\google\components\PlaceDetails;
+use Hirtz\Location\models\Location;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 

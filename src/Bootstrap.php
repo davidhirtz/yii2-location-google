@@ -1,13 +1,13 @@
 <?php
 
-namespace davidhirtz\yii2\location\google;
+namespace Hirtz\Location\google;
 
-use davidhirtz\yii2\location\google\behaviors\LocationProviderIdBehavior;
-use davidhirtz\yii2\location\google\components\Autocomplete;
-use davidhirtz\yii2\location\google\components\GoogleMapsApi;
-use davidhirtz\yii2\location\models\Location;
-use davidhirtz\yii2\location\modules\admin\widgets\forms\AutocompleteInputWidget;
-use davidhirtz\yii2\skeleton\web\Application;
+use Hirtz\Location\google\behaviors\LocationProviderIdBehavior;
+use Hirtz\Location\google\components\Autocomplete;
+use Hirtz\Location\google\components\GoogleMapsApi;
+use Hirtz\Location\models\Location;
+use Hirtz\Location\modules\admin\widgets\forms\AutocompleteInputWidget;
+use Hirtz\Skeleton\web\Application;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\base\Event;

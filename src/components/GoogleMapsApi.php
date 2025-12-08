@@ -1,6 +1,6 @@
 <?php
 
-namespace davidhirtz\yii2\location\google\components;
+namespace Hirtz\Location\google\components;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
