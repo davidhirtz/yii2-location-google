@@ -3,4 +3,4 @@ modules:
   enabled:
     - Asserts
     - Filesystem
-    - Hirtz\Skeleton\codeception\Yii2
+    - Hirtz\Skeleton\Codeception\Yii2

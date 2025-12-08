@@ -2,7 +2,7 @@
 
 namespace Hirtz\Location\google\components;
 
-use Hirtz\Location\modules\admin\interfaces\AutocompleteInterface;
+use Hirtz\Location\Modules\Admin\Interfaces\AutocompleteInterface;
 use GuzzleHttp\RequestOptions;
 use yii\base\BaseObject;
 
