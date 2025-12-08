@@ -13,18 +13,17 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "davidhirtz/yii2-location": "v2.x-dev",
+    "davidhirtz/yii2-location": "v3.x-dev",
     "ramsey/uuid": "^4.7"
   },
   "require-dev": {
-    "codeception/codeception": "^5.0",
-    "codeception/module-asserts": "^3.0",
+    "codeception/codeception": "^5.3",
+    "codeception/module-asserts": "^3.2",
     "codeception/module-filesystem": "^3.0",
     "codeception/module-phpbrowser": "^3.0",
-    "codeception/module-yii2": "^1.1",
+    "codeception/module-yii2": "^2.0",
     "codeception/specify": "^2.0",
-    "codeception/verify": "^3.0",
-    "phpro/grumphp-shim": "^2.4",
+    "codeception/verify": "^3.3",
     "phpunit/phpunit": "^9",
     "rector/rector": "^2.0",
     "symplify/easy-coding-standard": "^12.0",

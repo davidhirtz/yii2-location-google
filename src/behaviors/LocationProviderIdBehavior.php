@@ -28,7 +28,7 @@ class LocationProviderIdBehavior extends AttributeBehavior
                     ->andFilterWhere(['<>', 'id', $this->owner->id])
                     ->exists();
 
-                if($exists) {
+                if ($exists) {
                     $this->owner->addError('provider_id', Yii::t('yii', '{attribute} "{value}" has already been taken.', [
                         'attribute' => $this->owner->getAttributeLabel('provider_id'),
                         'value' => $this->owner->provider_id,
