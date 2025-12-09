@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hirtz\Location\google\components;
 
 use GuzzleHttp\RequestOptions;

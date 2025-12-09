@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hirtz\Location\google\components;
 
 use GuzzleHttp\Client;
@@ -14,7 +16,7 @@ use yii\web\HttpException;
 
 class GoogleMapsApi extends BaseObject
 {
-    final public const SESSION_TOKEN_KEY = 'google_maps_api_session_token';
+    final public const string SESSION_TOKEN_KEY = 'google_maps_api_session_token';
 
     public string $apiKey;
     public ?string $languageCode = null;
