@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Hirtz\Location\Bootstrap;
 
 if (is_file(__DIR__ . '/db.php')) {
