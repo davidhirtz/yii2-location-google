@@ -7,7 +7,7 @@ namespace Hirtz\Location\google;
 use Hirtz\Location\google\behaviors\LocationProviderIdBehavior;
 use Hirtz\Location\google\components\Autocomplete;
 use Hirtz\Location\google\components\GoogleMapsApi;
-use Hirtz\Location\models\Location;
+use Hirtz\Location\Models\Location;
 use Hirtz\Location\Modules\Admin\Widgets\Forms\AutocompleteInputWidget;
 use Hirtz\Skeleton\Web\Application;
 use Yii;
