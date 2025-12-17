@@ -13,7 +13,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "davidhirtz/yii2-location": "v3.x-dev",
+    "davidhirtz/yii2-location": "next-dev",
     "ramsey/uuid": "^4.7"
   },
   "require-dev": {
