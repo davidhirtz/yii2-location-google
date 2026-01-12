@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Location\google\components;
+namespace Hirtz\Location\Google\Components;
 
 use Hirtz\Location\Modules\Admin\Interfaces\AutocompleteInterface;
 use GuzzleHttp\RequestOptions;
+use Hirtz\Media\Helpers\Html;
 use yii\base\BaseObject;
 
 class Autocomplete extends BaseObject implements AutocompleteInterface
@@ -28,7 +29,7 @@ class Autocomplete extends BaseObject implements AutocompleteInterface
 
         foreach ($suggestions as $suggestion) {
             $results[] = [
-                'label' => $suggestion['placePrediction']['text']['text'],
+                'text' => Html::encode($suggestion['placePrediction']['text']['text']),
                 'value' => $suggestion['placePrediction']['placeId'],
             ];
         }

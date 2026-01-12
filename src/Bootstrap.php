@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Location\google;
+namespace Hirtz\Location\Google;
 
-use Hirtz\Location\google\behaviors\LocationProviderIdBehavior;
-use Hirtz\Location\google\components\Autocomplete;
-use Hirtz\Location\google\components\GoogleMapsApi;
+use Hirtz\Location\Google\Behaviors\LocationProviderIdBehavior;
+use Hirtz\Location\Google\Components\Autocomplete;
+use Hirtz\Location\Google\Components\GoogleMapsApi;
 use Hirtz\Location\Models\Location;
-use Hirtz\Location\Modules\Admin\Widgets\Forms\AutocompleteInputWidget;
+use Hirtz\Location\Modules\Admin\Widgets\Forms\LocationProviderIdField;
 use Hirtz\Skeleton\Web\Application;
 use Yii;
 use yii\base\BootstrapInterface;
@@ -57,10 +57,11 @@ class Bootstrap implements BootstrapInterface
 
     protected function setAutocompleteInputLabel(): void
     {
-        $definition = Yii::$container->getDefinitions()[AutocompleteInputWidget::class] ?? [];
-        $definition['label'] ??= 'Google Places ID';
+        $definition = Yii::$container->getDefinitions()[LocationProviderIdField::class] ?? [];
 
-        Yii::$container->set(AutocompleteInputWidget::class, $definition);
+        Yii::$container->set(LocationProviderIdField::class, $definition, [
+            'label' => 'Google Places ID',
+        ]);
     }
 
     protected function setGoogleApiKey(string $googleApiKey): void

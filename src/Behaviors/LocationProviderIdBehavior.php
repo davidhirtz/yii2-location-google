@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Location\google\behaviors;
+namespace Hirtz\Location\Google\Behaviors;
 
-use Hirtz\Location\google\components\PlaceDetails;
+use Hirtz\Location\Google\Components\PlaceDetails;
 use Hirtz\Location\Models\Location;
 use Yii;
 use yii\behaviors\AttributeBehavior;

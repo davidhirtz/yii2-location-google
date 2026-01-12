@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Hirtz\Location\google\components;
+namespace Hirtz\Location\Google\Components;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
