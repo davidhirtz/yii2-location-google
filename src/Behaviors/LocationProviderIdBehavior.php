@@ -6,6 +6,7 @@ namespace Hirtz\Location\Google\Behaviors;
 
 use Hirtz\Location\Google\Components\PlaceDetails;
 use Hirtz\Location\Models\Location;
+use Override;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 
@@ -14,7 +15,7 @@ use yii\behaviors\AttributeBehavior;
  */
 class LocationProviderIdBehavior extends AttributeBehavior
 {
-    #[\Override]
+    #[Override]
     public function events(): array
     {
         return [
