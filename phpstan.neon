@@ -3,7 +3,6 @@ parameters:
 
     paths:
         - src
-        - tests
 
     scanFiles:
         - %rootDir%/../../../vendor/davidhirtz/yii2-skeleton/Yii.php
