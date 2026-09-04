@@ -11,7 +11,7 @@ use Yii;
 use yii\behaviors\AttributeBehavior;
 
 /**
- * @property Location $owner
+ * @extends AttributeBehavior<Location>
  */
 class LocationProviderIdBehavior extends AttributeBehavior
 {
