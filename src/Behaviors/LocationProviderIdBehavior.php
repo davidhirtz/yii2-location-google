@@ -15,6 +15,9 @@ use yii\behaviors\AttributeBehavior;
  */
 class LocationProviderIdBehavior extends AttributeBehavior
 {
+    /**
+     * @return array<string, callable>
+     */
     #[Override]
     public function events(): array
     {

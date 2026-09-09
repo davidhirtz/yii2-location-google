@@ -13,15 +13,23 @@ class Autocomplete extends BaseObject implements AutocompleteInterface
 {
     /**
      * @see RequestOptions
+     * @var array<string, mixed>
      */
     public array $options = [];
 
+    /**
+     * @return list<array{text: string, value: mixed}>
+     */
     public function getResults(string $input): array
     {
         $data = GoogleMapsApi::create()->autocomplete($input, $this->options);
         return $this->getFormattedApiResponse($data);
     }
 
+    /**
+     * @param array<string, mixed> $data
+     * @return list<array{text: string, value: mixed}>
+     */
     protected function getFormattedApiResponse(array $data): array
     {
         $suggestions = $data['suggestions'] ?? [];

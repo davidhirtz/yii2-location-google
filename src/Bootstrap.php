@@ -17,7 +17,7 @@ use yii\base\Event;
 class Bootstrap implements BootstrapInterface
 {
     /**
-     * @param Application $app
+     * @param Application<\Hirtz\Skeleton\Models\User> $app
      */
     public function bootstrap($app): void
     {

@@ -22,6 +22,7 @@ class GoogleMapsApi extends BaseObject
     public ?string $languageCode = null;
     public ?HandlerStack $handlerStack = null;
 
+    /** @var array<string, string> */
     public array $supportedLanguageCodes = [
         'en-US' => 'en',
         'de' => 'de',
@@ -57,6 +58,10 @@ class GoogleMapsApi extends BaseObject
         parent::init();
     }
 
+    /**
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
     public function autocomplete(string $input, array $options = []): array
     {
         $options['json']['input'] = $input;
@@ -67,6 +72,8 @@ class GoogleMapsApi extends BaseObject
     }
 
     /**
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
      * @throws HttpException
      */
     public function getPlace(string $placeId, array $options = []): array
@@ -79,7 +86,11 @@ class GoogleMapsApi extends BaseObject
         return $this->request('GET', "https://places.googleapis.com/v1/places/$placeId", $options);
     }
 
-    protected function request(string $method, $uri = '', array $options = []): array
+    /**
+     * @param array<string, mixed> $options
+     * @return array<string, mixed>
+     */
+    protected function request(string $method, string $uri = '', array $options = []): array
     {
         $this->prepareOptions($options);
 
@@ -99,6 +110,9 @@ class GoogleMapsApi extends BaseObject
         }
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     protected function prepareOptions(array &$options): void
     {
         $options['headers']['X-Goog-Api-Key'] = $this->apiKey;

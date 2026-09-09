@@ -12,9 +12,12 @@ class PlaceDetails extends BaseObject
 {
     /**
      * @see RequestOptions
+     * @var array<string, mixed>
      */
     public array $options = [];
     public string $placeId;
+
+    /** @var string[] */
     public array $fields = [
         'id',
         'formattedAddress',
@@ -24,6 +27,8 @@ class PlaceDetails extends BaseObject
     ];
 
     protected ?string $error = null;
+
+    /** @var array<string, mixed> */
     protected array $data = [];
 
     public function load(): bool
@@ -40,6 +45,9 @@ class PlaceDetails extends BaseObject
         return $this->data !== [];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getAttributes(): array
     {
         $attributes = [];
