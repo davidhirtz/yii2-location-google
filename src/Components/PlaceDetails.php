@@ -70,7 +70,8 @@ class PlaceDetails extends BaseObject
         }
 
         if (in_array('addressComponents', $this->fields)) {
-            foreach ($this->data['addressComponents'] as $component) {
+            // A lookup that failed, and a place Google returns without them, both leave the key unset.
+            foreach ($this->data['addressComponents'] ?? [] as $component) {
                 $attribute = match ($component['types'][0] ?? null) {
                     'street_number' => 'house_number',
                     'route' => 'street',
