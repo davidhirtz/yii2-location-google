@@ -13,6 +13,7 @@ use Hirtz\Skeleton\Web\Application;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\base\Event;
+use yii\db\BaseActiveRecord;
 
 class Bootstrap implements BootstrapInterface
 {
@@ -23,7 +24,7 @@ class Bootstrap implements BootstrapInterface
     {
         Yii::setAlias('@location-google', __DIR__);
 
-        Event::on(Location::class, Location::EVENT_INIT, $this->attachLocationProviderIdBehavior(...));
+        Event::on(Location::class, BaseActiveRecord::EVENT_INIT, $this->attachLocationProviderIdBehavior(...));
 
         $googleApiKey = $app->params['googleApiKey'] ?? null;
 
