@@ -1,5 +1,8 @@
 ## 3.0.0 (in development)
 
+- `Bootstrap::attachLocationProviderIdBehavior()` takes the `Models\Location` it attaches to, not the `Event`:
+  the registration goes through `Skeleton\Helpers\EventHelper::on()`, which narrows the sender.
+
 - `Components\Autocomplete` no longer HTML-encodes the suggestion text: the widget rendering it does, and the two
   together double-encoded every ampersand.
 
