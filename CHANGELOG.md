@@ -1,5 +1,8 @@
 ## 3.0.0 (in development)
 
+- `Components\Autocomplete` no longer HTML-encodes the suggestion text: the widget rendering it does, and the two
+  together double-encoded every ampersand.
+
 - `Components\PlaceDetails::getAttributes()` iterates the address components only when the response carried
   them: a lookup that failed, and a place Google returns without them, both left the key unset
 
