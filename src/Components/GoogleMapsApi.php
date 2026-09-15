@@ -13,6 +13,7 @@ use Ramsey\Uuid\Uuid;
 use Yii;
 use yii\base\BaseObject;
 use yii\web\HttpException;
+use yii\web\Session;
 
 class GoogleMapsApi extends BaseObject
 {
@@ -118,12 +119,15 @@ class GoogleMapsApi extends BaseObject
         $options['headers']['X-Goog-Api-Key'] = $this->apiKey;
     }
 
+    private function getWebSession(): ?Session
+    {
+        $session = Yii::$app->has('session') ? Yii::$app->get('session') : null;
+        return $session instanceof Session ? $session : null;
+    }
+
     protected function getSessionToken(): ?string
     {
-        $this->sessionToken ??= Yii::$app->has('session')
-            ? Yii::$app->getSession()->get(self::SESSION_TOKEN_KEY)
-            : null;
-
+        $this->sessionToken ??= $this->getWebSession()?->get(self::SESSION_TOKEN_KEY);
         return $this->sessionToken;
     }
 
@@ -132,14 +136,16 @@ class GoogleMapsApi extends BaseObject
         $this->sessionToken = $this->getSessionToken();
 
         if (!$this->sessionToken) {
-            if (!Yii::$app->has('session')) {
+            $session = $this->getWebSession();
+
+            if (!$session) {
                 return null;
             }
 
             Yii::debug('Generating new Google Maps API session token', __METHOD__);
 
             $this->sessionToken = Uuid::uuid4()->toString();
-            Yii::$app->getSession()->set(self::SESSION_TOKEN_KEY, $this->sessionToken);
+            $session->set(self::SESSION_TOKEN_KEY, $this->sessionToken);
         }
 
         return $this->sessionToken;
@@ -147,7 +153,7 @@ class GoogleMapsApi extends BaseObject
 
     protected function removeSessionToken(): void
     {
-        $token = Yii::$app->getSession()->remove(self::SESSION_TOKEN_KEY);
+        $token = $this->getWebSession()?->remove(self::SESSION_TOKEN_KEY);
         $this->sessionToken = null;
 
         if ($token) {
