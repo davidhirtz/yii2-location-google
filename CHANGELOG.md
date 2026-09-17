@@ -1,5 +1,11 @@
 ## 3.0.0 (in development)
 
+- **The `Google Places ID` label reaches the field** (monorepo issue #165). `Bootstrap` passed it as the third
+  argument of `Yii::$container->set()`, which is the list of constructor *parameters* — `Container::build()`
+  flattened the string-keyed entry into a second positional argument and `Widget::__construct(array $config = [])`
+  dropped it without a word, so the field had always rendered the location bundle's own `Provider ID`. It goes
+  through `Widget::EVENT_CONFIGURE` now, which is the documented way to extend a widget from the outside.
+
 - **The bundle wires nothing without a `googleApiKey`** (monorepo issue #162). `Bootstrap` registered the
   `autocomplete` component and the `provider_id` behavior whether or not the parameter was set, so the field's
   endpoint reached `Components\GoogleMapsApi` with no key and answered `Typed property … $apiKey must not be

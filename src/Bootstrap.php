@@ -11,6 +11,7 @@ use Hirtz\Location\Models\Location;
 use Hirtz\Location\Modules\Admin\Widgets\Forms\LocationProviderIdField;
 use Hirtz\Skeleton\Helpers\EventHelper;
 use Hirtz\Skeleton\Web\Application;
+use Hirtz\Skeleton\Widgets\Widget;
 use Yii;
 use yii\base\BootstrapInterface;
 use yii\db\BaseActiveRecord;
@@ -59,13 +60,18 @@ class Bootstrap implements BootstrapInterface
         ]);
     }
 
+    /**
+     * Through the widget's own extension point: the third argument of `Container::set()` is the list of
+     * constructor *parameters*, so a string-keyed entry there was flattened into a second positional argument
+     * and silently dropped by `Widget::__construct(array $config = [])` (monorepo issue #165).
+     */
     protected function setAutocompleteInputLabel(): void
     {
-        $definition = Yii::$container->getDefinitions()[LocationProviderIdField::class] ?? [];
-
-        Yii::$container->set(LocationProviderIdField::class, $definition, [
-            'label' => 'Google Places ID',
-        ]);
+        EventHelper::on(
+            LocationProviderIdField::class,
+            Widget::EVENT_CONFIGURE,
+            static fn (LocationProviderIdField $field) => $field->label('Google Places ID'),
+        );
     }
 
     protected function setGoogleApiKey(string $googleApiKey): void

@@ -27,7 +27,10 @@ class BootstrapTest extends TestCase
         self::assertNull($this->getLocationModule()->getAutocomplete());
         self::assertFalse(Location::create()->hasMethod('onBeforeValidate'));
 
-        self::assertStringNotContainsString('hx-get', $this->renderProviderIdField());
+        $html = $this->renderProviderIdField();
+
+        self::assertStringNotContainsString('hx-get', $html);
+        self::assertStringNotContainsString('Google Places ID', $html);
     }
 
     public function testAnApiKeyWiresTheAutocompleteAndTheBehavior(): void
@@ -38,10 +41,12 @@ class BootstrapTest extends TestCase
         self::assertTrue(Location::create()->hasMethod('onBeforeValidate'));
         self::assertSame('test-api-key', GoogleMapsApi::create()->apiKey);
 
-        self::assertStringContainsString(
-            'hx-get="/admin/location/location/autocomplete"',
-            $this->renderProviderIdField(),
-        );
+        $html = $this->renderProviderIdField();
+
+        self::assertStringContainsString('hx-get="/admin/location/location/autocomplete"', $html);
+
+        // The field names the provider, which is the Google bundle's to say and only once one is wired.
+        self::assertStringContainsString('Google Places ID', $html);
     }
 
     /**
