@@ -8,10 +8,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use Override;
 use Psr\Http\Message\RequestInterface;
 use Ramsey\Uuid\Uuid;
 use Yii;
 use yii\base\BaseObject;
+use yii\base\InvalidConfigException;
 use yii\web\HttpException;
 use yii\web\Session;
 
@@ -19,7 +21,7 @@ class GoogleMapsApi extends BaseObject
 {
     final public const string SESSION_TOKEN_KEY = 'google_maps_api_session_token';
 
-    public string $apiKey;
+    public ?string $apiKey = null;
     public ?string $languageCode = null;
     public ?HandlerStack $handlerStack = null;
 
@@ -35,8 +37,13 @@ class GoogleMapsApi extends BaseObject
 
     protected ?string $sessionToken = null;
 
+    #[Override]
     public function init(): void
     {
+        if (!$this->apiKey) {
+            throw new InvalidConfigException('The Google Maps API needs an API key. Set `googleApiKey` in `config/params.php`.');
+        }
+
         $this->languageCode ??= Yii::$app->language;
         $this->languageCode = $this->supportedLanguageCodes[$this->languageCode] ?? 'en';
 

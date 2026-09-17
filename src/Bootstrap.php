@@ -15,6 +15,10 @@ use Yii;
 use yii\base\BootstrapInterface;
 use yii\db\BaseActiveRecord;
 
+/**
+ * Nothing here answers without an API key, so an installation that has none keeps the plain `provider_id` field
+ * the location bundle renders on its own, rather than a form that 500s on the first keystroke.
+ */
 class Bootstrap implements BootstrapInterface
 {
     /**
@@ -24,14 +28,15 @@ class Bootstrap implements BootstrapInterface
     {
         Yii::setAlias('@location-google', __DIR__);
 
-        EventHelper::on(Location::class, BaseActiveRecord::EVENT_INIT, $this->attachLocationProviderIdBehavior(...));
-
         $googleApiKey = $app->params['googleApiKey'] ?? null;
 
-        if ($googleApiKey) {
-            $this->setGoogleApiKey($googleApiKey);
+        if (!is_string($googleApiKey) || !$googleApiKey) {
+            return;
         }
 
+        EventHelper::on(Location::class, BaseActiveRecord::EVENT_INIT, $this->attachLocationProviderIdBehavior(...));
+
+        $this->setGoogleApiKey($googleApiKey);
         $this->setAutocompleteComponent();
         $this->setAutocompleteInputLabel();
     }

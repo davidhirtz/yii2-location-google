@@ -1,5 +1,13 @@
 ## 3.0.0 (in development)
 
+- **The bundle wires nothing without a `googleApiKey`** (monorepo issue #162). `Bootstrap` registered the
+  `autocomplete` component and the `provider_id` behavior whether or not the parameter was set, so the field's
+  endpoint reached `Components\GoogleMapsApi` with no key and answered `Typed property … $apiKey must not be
+  accessed before initialization` — a 500 on the location form of every installation that has no key, a fresh
+  checkout among them. It returns after the alias now, and `Location\Modules\Admin\Widgets\Forms\LocationProviderIdField`
+  falls back to the plain input it inherits. `GoogleMapsApi::$apiKey` is `?string` and `init()` refuses a
+  component built without one, naming the parameter.
+
 - `Bootstrap::attachLocationProviderIdBehavior()` takes the `Models\Location` it attaches to, not the `Event`:
   the registration goes through `Skeleton\Helpers\EventHelper::on()`, which narrows the sender.
 
