@@ -1,4 +1,4 @@
-## 3.0.0 (in development)
+## 3.0.0 (September 23, 2026)
 
 - Renamed the namespace `davidhirtz\yii2\location\google\` to `Hirtz\Location\Google\` and the directories `behaviors` and `components` to `Behaviors` and `Components`; requires PHP 8.3 and `davidhirtz/yii2-location` 3.0
 - Changed `Bootstrap` to wire nothing without `params.googleApiKey`: `Behaviors\LocationProviderIdBehavior`, the `autocomplete` component of the location admin module and the `Google Places ID` label are only registered when the key is set
