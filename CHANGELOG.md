@@ -1,27 +1,12 @@
 ## 3.0.0 (in development)
 
-- **The `Google Places ID` label reaches the field** (monorepo issue #165). `Bootstrap` passed it as the third
-  argument of `Yii::$container->set()`, which is the list of constructor *parameters* — `Container::build()`
-  flattened the string-keyed entry into a second positional argument and `Widget::__construct(array $config = [])`
-  dropped it without a word, so the field had always rendered the location bundle's own `Provider ID`. It goes
-  through `Widget::EVENT_CONFIGURE` now, which is the documented way to extend a widget from the outside.
-
-- **The bundle wires nothing without a `googleApiKey`** (monorepo issue #162). `Bootstrap` registered the
-  `autocomplete` component and the `provider_id` behavior whether or not the parameter was set, so the field's
-  endpoint reached `Components\GoogleMapsApi` with no key and answered `Typed property … $apiKey must not be
-  accessed before initialization` — a 500 on the location form of every installation that has no key, a fresh
-  checkout among them. It returns after the alias now, and `Location\Modules\Admin\Widgets\Forms\LocationProviderIdField`
-  falls back to the plain input it inherits. `GoogleMapsApi::$apiKey` is `?string` and `init()` refuses a
-  component built without one, naming the parameter.
-
-- `Bootstrap::attachLocationProviderIdBehavior()` takes the `Models\Location` it attaches to, not the `Event`:
-  the registration goes through `Skeleton\Helpers\EventHelper::on()`, which narrows the sender.
-
-- `Components\Autocomplete` no longer HTML-encodes the suggestion text: the widget rendering it does, and the two
-  together double-encoded every ampersand.
-
-- `Components\PlaceDetails::getAttributes()` iterates the address components only when the response carried
-  them: a lookup that failed, and a place Google returns without them, both left the key unset
+- Renamed the namespace `davidhirtz\yii2\location\google\` to `Hirtz\Location\Google\` and the directories `behaviors` and `components` to `Behaviors` and `Components`; requires PHP 8.3 and `davidhirtz/yii2-location` 3.0
+- Changed `Bootstrap` to wire nothing without `params.googleApiKey`: `Behaviors\LocationProviderIdBehavior`, the `autocomplete` component of the location admin module and the `Google Places ID` label are only registered when the key is set
+- Changed `Components\GoogleMapsApi::$apiKey` to `?string`; `init()` throws an `InvalidConfigException` when it is empty
+- Changed `Components\Autocomplete::getResults()` to key each suggestion by `text` instead of `label`, as `Hirtz\Location\Modules\Admin\Interfaces\AutocompleteInterface` declares
+- Changed `Bootstrap::attachLocationProviderIdBehavior()` to take the `Hirtz\Location\Models\Location` instead of the `Event`
+- Changed `Bootstrap::setAutocompleteInputLabel()` to set the label through `Widget::EVENT_CONFIGURE` on `Hirtz\Location\Modules\Admin\Widgets\Forms\LocationProviderIdField` instead of a container definition for `AutocompleteInputWidget`
+- Changed `Components\PlaceDetails::getAttributes()` to skip the address components when the response carries none
 
 ## 1.0.2 (Aug 1, 2024)
 
