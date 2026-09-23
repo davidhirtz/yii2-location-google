@@ -4,8 +4,7 @@ Google Places provider for the [Yii 2](https://www.yiiframework.com/) extension
 [yii2-location](https://github.com/davidhirtz/yii2-location): the admin's location form searches the
 [Places API (New)](https://console.cloud.google.com/marketplace/product/google/places.googleapis.com) for a place
 and fills the location's address, name and coordinates from the place a user picks. Requires
-`davidhirtz/yii2-location` and, through it, `davidhirtz/yii2-skeleton`; Guzzle comes with the skeleton,
-`ramsey/uuid` with this bundle.
+`davidhirtz/yii2-location` and `davidhirtz/yii2-skeleton`, plus Guzzle and `ramsey/uuid`.
 
 ## Installation
 
