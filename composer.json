@@ -12,8 +12,8 @@
   ],
   "require": {
     "php": "^8.3",
-    "davidhirtz/yii2-location": "main-dev",
-    "davidhirtz/yii2-skeleton": "main-dev",
+    "davidhirtz/yii2-location": "^3.0",
+    "davidhirtz/yii2-skeleton": "^3.0",
     "guzzlehttp/guzzle": "^7.9",
     "ramsey/uuid": "^4.7"
   },
