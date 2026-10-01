@@ -6,6 +6,7 @@ namespace Hirtz\Location\Google\Components;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Override;
@@ -24,6 +25,7 @@ class GoogleMapsApi extends BaseObject
     public ?string $apiKey = null;
     public ?string $languageCode = null;
     public ?HandlerStack $handlerStack = null;
+    public float $timeout = 10;
 
     /** @var array<string, string> */
     public array $supportedLanguageCodes = [
@@ -104,9 +106,7 @@ class GoogleMapsApi extends BaseObject
 
         try {
             $response = $this->getClient()->request($method, $uri, $options);
-            $contents = $response->getBody()->getContents();
-
-            return json_decode($contents, true);
+            $data = json_decode($response->getBody()->getContents(), true);
         } catch (ClientException $exception) {
             $contents = $exception->getResponse()->getBody()->getContents();
             $body = json_decode($contents, true);
@@ -115,7 +115,16 @@ class GoogleMapsApi extends BaseObject
             $message = $body['error']['message'] ?? $exception->getMessage();
 
             throw new HttpException($code, $message);
+        } catch (GuzzleException $exception) {
+            Yii::error($exception->getMessage(), __METHOD__);
+            throw new HttpException(502, $exception->getMessage());
         }
+
+        if (!is_array($data)) {
+            throw new HttpException(502, 'The Google Maps API answered without JSON.');
+        }
+
+        return $data;
     }
 
     /**
@@ -170,7 +179,11 @@ class GoogleMapsApi extends BaseObject
 
     protected function getClient(): Client
     {
-        return new Client(['handler' => $this->handlerStack]);
+        return new Client([
+            'handler' => $this->handlerStack,
+            'connect_timeout' => $this->timeout,
+            'timeout' => $this->timeout,
+        ]);
     }
 
     public static function create(): self

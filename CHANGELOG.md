@@ -1,3 +1,7 @@
+## Unreleased
+
+- Added `Components\GoogleMapsApi::$timeout` (10 seconds); a connection failure, a server error or an answer without JSON throws a `502` `HttpException`
+
 ## 3.0.0 (September 23, 2026)
 
 - Renamed the namespace `davidhirtz\yii2\location\google\` to `Hirtz\Location\Google\` and the directories `behaviors` and `components` to `Behaviors` and `Components`; requires PHP 8.3 and `davidhirtz/yii2-location` 3.0
