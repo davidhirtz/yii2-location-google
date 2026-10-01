@@ -52,6 +52,7 @@ into whatever definition a project registered, without overwriting one it names 
 | `languageCode`           | `Yii::$app->language`          | Language of the suggestions and place details, mapped through `supportedLanguageCodes`             |
 | `supportedLanguageCodes` | `en-US`, `de`, `fr`, `pt`, `zh-CN`, `zh-TW` | Map of application language to Places API language code; an unmapped language falls back to `en` |
 | `handlerStack`           | `HandlerStack::create()`       | Guzzle handler stack; in debug mode every request is logged through `Yii::info()`                 |
+| `timeout`                | `10`                           | Connect and response timeout in seconds; a failed request throws a `502` `HttpException`          |
 
 ```php
 // config/web.php
