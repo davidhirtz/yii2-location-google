@@ -1,4 +1,4 @@
-## Unreleased
+## 3.1.0 (October 2, 2026)
 
 - Added `Components\GoogleMapsApi::$timeout` (10 seconds); a connection failure, a server error or an answer without JSON throws a `502` `HttpException`
 
