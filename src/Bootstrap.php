@@ -9,19 +9,30 @@ use Hirtz\Location\Google\Components\Autocomplete;
 use Hirtz\Location\Google\Components\GoogleMapsApi;
 use Hirtz\Location\Models\Location;
 use Hirtz\Location\Modules\Admin\Widgets\Forms\LocationProviderIdField;
+use Hirtz\Skeleton\Base\ConfigBootstrapInterface;
 use Hirtz\Skeleton\Helpers\EventHelper;
 use Hirtz\Skeleton\Web\Application;
 use Hirtz\Skeleton\Widgets\Widget;
+use Override;
 use Yii;
-use yii\base\BootstrapInterface;
 use yii\db\BaseActiveRecord;
 
 /**
  * Nothing here answers without an API key, so an installation that has none keeps the plain `provider_id` field
  * the location bundle renders on its own, rather than a form that 500s on the first keystroke.
  */
-class Bootstrap implements BootstrapInterface
+class Bootstrap implements ConfigBootstrapInterface
 {
+    #[Override]
+    public static function getDefaultConfig(): array
+    {
+        return [
+            'sensitiveParams' => [
+                'googleApiKey',
+            ],
+        ];
+    }
+
     /**
      * @param Application<\Hirtz\Skeleton\Models\User> $app
      */

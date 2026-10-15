@@ -22,6 +22,11 @@ class BootstrapTest extends TestCase
 {
     use UserFixtureTrait;
 
+    public function testTheApiKeyIsASensitiveParam(): void
+    {
+        self::assertContains('googleApiKey', Yii::$app->sensitiveParams);
+    }
+
     public function testNothingIsWiredWithoutAnApiKey(): void
     {
         self::assertNull($this->getLocationModule()->getAutocomplete());
