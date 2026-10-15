@@ -1,4 +1,4 @@
-## Unreleased
+## 3.2.0 (October 15, 2026)
 
 - Added its secret params to the application's `sensitiveParams`
 - Changed the `davidhirtz/yii2-skeleton` requirement to `^3.18` (`sensitiveParams`)
