@@ -85,7 +85,28 @@ class PlaceDetailsTest extends TestCase
             ])
             ->getAttributes();
 
-        self::assertSame([], $attributes);
+        self::assertSame([], array_filter($attributes));
+    }
+
+    public function testAPlaceWithoutAStreetClearsTheStoredStreet(): void
+    {
+        $attributes = (new TestPlaceDetails(['placeId' => 'abc']))
+            ->withData([
+                'id' => 'ChIJpark',
+                'displayName' => ['text' => 'Großer Tiergarten'],
+                'addressComponents' => [
+                    ['types' => ['locality'], 'longText' => 'Berlin', 'shortText' => 'Berlin'],
+                    ['types' => ['country'], 'longText' => 'Germany', 'shortText' => 'DE'],
+                ],
+            ])
+            ->getAttributes();
+
+        foreach (['house_number', 'street', 'postal_code', 'district', 'state'] as $name) {
+            self::assertArrayHasKey($name, $attributes);
+            self::assertNull($attributes[$name]);
+        }
+
+        self::assertSame('Berlin', $attributes['locality']);
     }
 }
 

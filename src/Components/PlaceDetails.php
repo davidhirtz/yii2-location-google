@@ -69,9 +69,15 @@ class PlaceDetails extends BaseObject
             $attributes['name'] = $this->data['displayName']['text'] ?? null;
         }
 
-        if (in_array('addressComponents', $this->fields)) {
-            // A lookup that failed, and a place Google returns without them, both leave the key unset.
-            foreach ($this->data['addressComponents'] ?? [] as $component) {
+        if (in_array('addressComponents', $this->fields) && !empty($this->data['addressComponents'])) {
+            // A component the new place lacks must not keep the previous place's; a lookup that failed, and a place
+            // Google returns without components, leave them all as they were.
+            $attributes = [
+                ...$attributes,
+                ...array_fill_keys(['house_number', 'street', 'district', 'locality', 'postal_code', 'state', 'country_code'], null),
+            ];
+
+            foreach ($this->data['addressComponents'] as $component) {
                 $attribute = match ($component['types'][0] ?? null) {
                     'street_number' => 'house_number',
                     'route' => 'street',
