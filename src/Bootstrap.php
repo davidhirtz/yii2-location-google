@@ -72,9 +72,7 @@ class Bootstrap implements ConfigBootstrapInterface
     }
 
     /**
-     * Through the widget's own extension point: the third argument of `Container::set()` is the list of
-     * constructor *parameters*, so a string-keyed entry there was flattened into a second positional argument
-     * and silently dropped by `Widget::__construct(array $config = [])` (monorepo issue #165).
+     * Through the widget's extension point, since `Container::set()`'s third argument is constructor parameters (#165).
      */
     protected function setAutocompleteInputLabel(): void
     {

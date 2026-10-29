@@ -55,8 +55,7 @@ class BootstrapTest extends TestCase
     }
 
     /**
-     * The reproduction of monorepo issue #162: with the component registered but no key behind it, the request the
-     * field makes on every keystroke was a 500 naming an uninitialized property.
+     * Monorepo issue #162: a registered component without a key made every keystroke's request a 500.
      */
     public function testTheAutocompleteEndpointIsNotReachableWithoutAnApiKey(): void
     {
